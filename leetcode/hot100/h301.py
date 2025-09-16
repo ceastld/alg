@@ -1,3 +1,20 @@
+"""
+LeetCode 301. Remove Invalid Parentheses
+
+题目描述：
+给你一个由若干括号和字母组成的字符串s，删除最小数量的无效括号，使得输入的字符串有效。
+返回所有可能的结果。答案可以按任意顺序返回。
+
+示例：
+s = "()())()"
+输出：["(())()","()()()"]
+
+数据范围：
+- 1 <= s.length <= 25
+- s由小写英文字母以及括号'('和')'组成
+- s中至多含20个括号
+"""
+
 class Solution:
     def removeInvalidParentheses(self, s: str) -> list[str]:
         def is_valid(s):

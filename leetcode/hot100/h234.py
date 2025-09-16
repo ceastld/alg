@@ -1,3 +1,18 @@
+"""
+LeetCode 234. Palindrome Linked List
+
+题目描述：
+给你一个单链表的头节点head，请你判断该链表是否为回文链表。如果是，返回true；否则，返回false。
+
+示例：
+head = [1,2,2,1]
+输出：true
+
+数据范围：
+- 链表中节点数目在范围[1, 10^5]内
+- 0 <= Node.val <= 9
+"""
+
 # Definition for singly-linked list.
 # class ListNode(object):
 #     def __init__(self, val=0, next=None):

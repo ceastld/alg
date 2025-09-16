@@ -1,3 +1,19 @@
+"""
+LeetCode 560. Subarray Sum Equals K
+
+题目描述：
+给你一个整数数组nums和一个整数k，请你统计并返回该数组中和为k的连续子数组的个数。
+
+示例：
+nums = [1,1,1], k = 2
+输出：2
+
+数据范围：
+- 1 <= nums.length <= 2 * 10^4
+- -1000 <= nums[i] <= 1000
+- -10^7 <= k <= 10^7
+"""
+
 class Solution:
     def subarraySum(self, nums: list[int], k: int) -> int:
         from collections import defaultdict

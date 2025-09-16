@@ -1,3 +1,25 @@
+"""
+LeetCode 207. Course Schedule
+
+题目描述：
+你这个学期必须选修numCourses门课程，记为0到numCourses-1。
+在选修某些课程之前需要一些先修课程。先修课程按数组prerequisites给出，其中prerequisites[i] = [ai, bi]，表示如果要学习课程ai则必须先学习课程bi。
+例如，先修课程对[0, 1]表示：想要学习课程0，你需要先完成课程1。
+请你判断是否可能完成所有课程的学习？如果可以，返回true；否则，返回false。
+
+示例：
+numCourses = 2, prerequisites = [[1,0]]
+输出：true
+解释：总共有2门课程。学习课程1之前，你需要完成课程0。这是可能的。
+
+数据范围：
+- 1 <= numCourses <= 10^5
+- 0 <= prerequisites.length <= 5000
+- prerequisites[i].length == 2
+- 0 <= ai, bi < numCourses
+- prerequisites[i]中的所有课程对互不相同
+"""
+
 class Solution(object):
     def canFinish(self, numCourses, prerequisites):
         """

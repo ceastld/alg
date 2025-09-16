@@ -1,3 +1,23 @@
+"""
+LeetCode 139. Word Break
+
+题目描述：
+给你一个字符串s和一个字符串列表wordDict作为字典。请你判断是否可以利用字典中出现的单词拼接出s。
+注意：不要求字典中出现的单词全部都使用，并且字典中的单词可以重复使用。
+
+示例：
+s = "leetcode", wordDict = ["leet","code"]
+输出：true
+解释：返回true因为"leetcode"可以由"leet"和"code"拼接成。
+
+数据范围：
+- 1 <= s.length <= 300
+- 1 <= wordDict.length <= 1000
+- 1 <= wordDict[i].length <= 20
+- s和wordDict[i]仅有小写英文字母
+- wordDict中的所有字符串互不相同
+"""
+
 from typing import List
 
 class Solution:

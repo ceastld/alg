@@ -1,3 +1,25 @@
+"""
+LeetCode 160. Intersection of Two Linked Lists
+
+题目描述：
+给你两个单链表的头节点headA和headB，请你找出并返回两个单链表相交的起始节点。如果两个链表没有交点，返回null。
+题目数据保证整个链式结构中不存在环。注意，函数返回结果后，链表必须保持其原始结构。
+
+示例：
+listA = [4,1,8,4,5], listB = [5,6,1,8,4,5], skipA = 2, skipB = 3
+输出：Intersected at '8'
+
+数据范围：
+- listA中节点数目为m
+- listB中节点数目为n
+- 1 <= m, n <= 3 * 10^4
+- 1 <= Node.val <= 10^5
+- 0 <= skipA <= m
+- 0 <= skipB <= n
+- 如果listA和listB没有交点，intersectVal为0
+- 如果listA和listB有交点，intersectVal == listA[skipA] == listB[skipB]
+"""
+
 # Definition for singly-linked list.
 class ListNode:
     def __init__(self, x):

@@ -1,3 +1,20 @@
+"""
+LeetCode 215. Kth Largest Element in an Array
+
+题目描述：
+给定整数数组nums和整数k，请返回数组中第k个最大的元素。
+请注意，你需要找的是数组排序后的第k个最大的元素，而不是第k个不同的元素。
+你必须设计并实现时间复杂度为O(n)的算法解决此问题。
+
+示例：
+nums = [3,2,1,5,6,4], k = 2
+输出：5
+
+数据范围：
+- 1 <= k <= nums.length <= 10^5
+- -10^4 <= nums[i] <= 10^4
+"""
+
 class Solution(object):
     def findKthLargest(self, nums, k):
         """
