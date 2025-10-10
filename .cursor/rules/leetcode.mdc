@@ -1,0 +1,145 @@
+---
+alwaysApply: true
+---
+
+# LeetCode 学习规则
+
+## 📁 文件结构规范
+
+### 题目文件命名
+- 题目文件：`h{题号}.py` (如：h704.py)
+- 答案文件：`h{题号}.ans.py` (如：h704.ans.py)
+
+### 文件内容规范
+
+#### 题目文件 (h{题号}.py)
+```python
+"""
+{题号}. {题目名称}
+{完整题目描述}
+
+题目链接：https://leetcode.cn/problems/{题目英文名}/
+
+示例 1:
+输入: ...
+输出: ...
+解释: ...
+
+提示：
+- ...
+"""
+from typing import List
+
+class Solution:
+    def method_name(self, params) -> return_type:
+        """
+        请在这里实现你的解法
+        """
+        # TODO: 在这里实现你的解法
+        pass
+
+def main():
+    """测试用例"""
+    solution = Solution()
+    
+    # 测试用例1
+    # assert solution.method_name(test_input) == expected_output
+    
+    # 测试用例2
+    # assert solution.method_name(test_input) == expected_output
+    
+    print("所有测试用例通过！")
+```
+
+#### 答案文件 (h{题号}.ans.py)
+```python
+"""
+{题号}. {题目名称} - 标准答案
+"""
+from typing import List
+
+class Solution:
+    def method_name(self, params) -> return_type:
+        """
+        标准解法：{算法名称}
+        
+        解题思路：
+        1. ...
+        2. ...
+        3. ...
+        
+        时间复杂度：O()
+        空间复杂度：O()
+        """
+        # 完整的标准解法实现
+        pass
+
+def main():
+    """测试标准答案"""
+    solution = Solution()
+    
+    # 测试用例1
+    # assert solution.method_name(test_input) == expected_output
+    
+    # 测试用例2
+    # assert solution.method_name(test_input) == expected_output
+    
+    print("所有测试用例通过！")
+```
+
+## 🎯 学习流程规范
+
+### 1. 练习阶段
+- 打开题目文件 (h{题号}.py)
+- 在 `pass` 处实现自己的解法
+- 运行测试验证结果
+- 确保所有测试用例通过
+
+### 2. 学习阶段
+- 打开答案文件 (h{题号}.ans.py)
+- 查看标准解法和详细注释
+- 对比自己的解法
+- 学习优化思路
+
+### 3. 代码规范
+- 使用类型提示 (Type Hints)
+- 添加详细的注释说明
+- 包含完整的测试用例
+- 测试用例要覆盖边界情况
+
+## 📝 注释规范
+
+### 题目描述
+- 包含完整的题目要求
+- 提供示例输入输出
+- 列出重要提示信息
+
+### 解题思路
+- 分步骤说明算法思路
+- 分析时间空间复杂度
+- 解释关键算法思想
+
+### 测试用例
+- 包含正常情况测试
+- 包含边界情况测试
+- 包含异常情况测试
+- 输出格式清晰易读
+
+## 🔧 开发规范
+
+### 文件组织
+- 题目文件和答案文件分离
+- 保持相同的测试用例
+- 使用一致的代码风格
+
+### 代码质量
+- 遵循Python PEP8规范
+- 使用有意义的变量名
+- 添加必要的错误处理
+- 保持代码简洁易读
+
+### 学习记录
+- 记录解题思路
+- 分析算法复杂度
+- 总结关键知识点
+- 标记需要重做的题目
