@@ -49,7 +49,7 @@
 ### 字符串
 1. [344. 反转字符串](https://leetcode.cn/problems/reverse-string/)
 2. [541. 反转字符串II](https://leetcode.cn/problems/reverse-string-ii/)
-3. [剑指Offer 05.替换空格](https://leetcode.cn/problems/ti-huan-kong-ge-lcof/)
+3. [LCR122. 路径加密](https://leetcode.cn/problems/ti-huan-kong-ge-lcof/)
 4. [151. 翻转字符串里的单词](https://leetcode.cn/problems/reverse-words-in-a-string/)
 5. [剑指Offer58-II.左旋转字符串](https://leetcode.cn/problems/zuo-xuan-zhuan-zi-fu-chuan-lcof/)
 6. [28. 实现 strStr()](https://leetcode.cn/problems/implement-strstr/)
@@ -60,7 +60,7 @@
 ### 双指针法
 1. [27. 移除元素](https://leetcode.cn/problems/remove-element/)
 2. [344. 反转字符串](https://leetcode.cn/problems/reverse-string/)
-3. [剑指Offer 05.替换空格](https://leetcode.cn/problems/ti-huan-kong-ge-lcof/)
+3. [LCR122. 路径加密](https://leetcode.cn/problems/ti-huan-kong-ge-lcof/)
 4. [151. 翻转字符串里的单词](https://leetcode.cn/problems/reverse-words-in-a-string/)
 5. [15. 三数之和](https://leetcode.cn/problems/3sum/)
 6. [18. 四数之和](https://leetcode.cn/problems/4sum/)
