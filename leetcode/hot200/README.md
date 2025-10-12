@@ -267,6 +267,7 @@ Kadane算法是解决最大子数组和问题的经典算法，也适用于环�
 
 ### 核心题目
 
+- [69. x 的平方根](math/h69.py) - [LeetCode](https://leetcode.cn/problems/sqrtx/)
 - [149. 直线上最多的点数](math/h149.py) - [LeetCode](https://leetcode.cn/problems/max-points-on-a-line/)
 
 ### 算法特点
@@ -274,6 +275,27 @@ Kadane算法是解决最大子数组和问题的经典算法，也适用于环�
 - **核心思想**：斜率计算、几何判断、数学公式
 - **应用场景**：几何问题、统计分析、图形处理
 - **关键技巧**：避免浮点数精度问题、使用最简分数表示斜率
+
+## 💡 动态规划
+
+动态规划是解决最优化问题的经典算法，通过将复杂问题分解为子问题来求解。
+
+### 核心题目
+
+- [64. 最小路径和](dp/h64.py) - [LeetCode](https://leetcode.cn/problems/minimum-path-sum/)
+- [70. 爬楼梯](dp/h70.py) - [LeetCode](https://leetcode.cn/problems/climbing-stairs/)
+- [72. 编辑距离](dp/h72.py) - [LeetCode](https://leetcode.cn/problems/edit-distance/)
+- [139. 单词拆分](dp/h139.py) - [LeetCode](https://leetcode.cn/problems/word-break/)
+- [198. 打家劫舍](dp/h198.py) - [LeetCode](https://leetcode.cn/problems/house-robber/)
+- [300. 最长递增子序列](dp/h300.py) - [LeetCode](https://leetcode.cn/problems/longest-increasing-subsequence/)
+- [322. 零钱兑换](dp/h322.py) - [LeetCode](https://leetcode.cn/problems/coin-change/)
+- [1143. 最长公共子序列](dp/h1143.py) - [LeetCode](https://leetcode.cn/problems/longest-common-subsequence/)
+
+### 算法特点
+
+- **核心思想**：状态转移方程、最优子结构、重叠子问题
+- **应用场景**：最优化问题、计数问题、路径问题
+- **关键技巧**：空间优化、状态压缩、记忆化搜索
 
 ## 📖 参考资料
 
