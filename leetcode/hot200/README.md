@@ -245,6 +245,36 @@
 3. **反复练习**：经典题目需要多次练习，形成肌肉记忆
 4. **总结归纳**：每个专题结束后，总结解题模板和常见套路
 
+## 🔄 Kadane算法
+
+Kadane算法是解决最大子数组和问题的经典算法，也适用于环形数组的变种。
+
+### 核心题目
+
+- [53. 最大子数组和](kadane/h53.py) - [LeetCode](https://leetcode.cn/problems/maximum-subarray/)
+- [918. 环形子数组的最大和](kadane/h918.py) - [LeetCode](https://leetcode.cn/problems/maximum-sum-circular-subarray/)
+
+### 算法特点
+
+- **时间复杂度**：O(n)
+- **空间复杂度**：O(1)
+- **核心思想**：动态规划，维护当前子数组和和最大子数组和
+- **应用场景**：最大子数组和、环形子数组和、股票买卖等
+
+## 🧮 数学算法
+
+数学算法专题主要涉及几何、数论、概率等数学概念在算法中的应用。
+
+### 核心题目
+
+- [149. 直线上最多的点数](math/h149.py) - [LeetCode](https://leetcode.cn/problems/max-points-on-a-line/)
+
+### 算法特点
+
+- **核心思想**：斜率计算、几何判断、数学公式
+- **应用场景**：几何问题、统计分析、图形处理
+- **关键技巧**：避免浮点数精度问题、使用最简分数表示斜率
+
 ## 📖 参考资料
 
 - [代码随想录](https://github.com/youngyangyang04/leetcode-master) - 原始仓库
