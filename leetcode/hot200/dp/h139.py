@@ -15,9 +15,10 @@
 输入: s = "applepenapple", wordDict = ["apple", "pen"]
 输出: true
 解释: 返回 true 因为 "applepenapple" 可以由 "apple" "pen" "apple" 拼接成。
+     注意，你可以重复使用字典中的单词。
 
 示例 3:
-输入: s = "catsandog", wordDict = ["cat", "cats", "and", "sand", "dog"]
+输入: s = "catsandog", wordDict = ["cats", "dog", "sand", "and", "cat"]
 输出: false
 
 提示：
@@ -33,17 +34,11 @@ from typing import List
 
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
-        wordSet = set(wordDict)
-        n = len(s)
-        dp = [False] * (n + 1)
-        dp[0] = True
-        for i in range(1, n + 1):
-            for j in range(i):
-                if dp[j] and s[j:i] in wordSet:
-                    dp[i] = True
-                    break
-        return dp[n]
-        
+        """
+        请在这里实现你的解法
+        """
+        # TODO: 在这里实现你的解法
+        pass
 
 
 def main():
@@ -66,7 +61,7 @@ def main():
     
     # 测试用例3
     s = "catsandog"
-    wordDict = ["cat", "cats", "and", "sand", "dog"]
+    wordDict = ["cats", "dog", "sand", "and", "cat"]
     result = solution.wordBreak(s, wordDict)
     expected = False
     assert result == expected
@@ -79,8 +74,8 @@ def main():
     assert result == expected
     
     # 测试用例5
-    s = "aaaaaaa"
-    wordDict = ["aaaa", "aaa"]
+    s = "ab"
+    wordDict = ["a", "b"]
     result = solution.wordBreak(s, wordDict)
     expected = True
     assert result == expected

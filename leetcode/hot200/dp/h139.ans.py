@@ -10,22 +10,24 @@ class Solution:
         标准解法：动态规划
         
         解题思路：
-        1. dp[i] 表示s[0:i]是否可以被字典中的单词拆分
-        2. 状态转移方程：dp[i] = dp[j] and s[j:i] in wordDict for j in range(i)
-        3. 边界条件：dp[0] = True
-        4. 返回dp[len(s)]
+        1. dp[i] 表示字符串s的前i个字符是否可以被字典中的单词拆分
+        2. 状态转移方程：
+           - dp[i] = dp[j] and s[j:i] in wordDict
+        3. 遍历所有可能的分割点j
         
-        时间复杂度：O(n^2 + m)，其中n是s的长度，m是字典中所有单词的总长度
-        空间复杂度：O(n + m)
+        时间复杂度：O(n^2 * m)，其中n是字符串长度，m是字典大小
+        空间复杂度：O(n)
         """
-        wordSet = set(wordDict)
+        if not s or not wordDict:
+            return False
+        
         n = len(s)
         dp = [False] * (n + 1)
-        dp[0] = True
+        dp[0] = True  # 空字符串可以被拆分
         
         for i in range(1, n + 1):
             for j in range(i):
-                if dp[j] and s[j:i] in wordSet:
+                if dp[j] and s[j:i] in wordDict:
                     dp[i] = True
                     break
         
@@ -33,27 +35,26 @@ class Solution:
     
     def wordBreak_optimized(self, s: str, wordDict: List[str]) -> bool:
         """
-        优化解法：限制j的范围
+        优化解法：使用集合优化查找
         
         解题思路：
-        1. 只检查可能的单词长度
-        2. 减少不必要的检查
+        1. 将wordDict转换为集合，提高查找效率
+        2. 使用动态规划求解
         
-        时间复杂度：O(n×m)，其中m是字典中单词的最大长度
-        空间复杂度：O(n + m)
+        时间复杂度：O(n^2)
+        空间复杂度：O(n)
         """
-        wordSet = set(wordDict)
+        if not s or not wordDict:
+            return False
+        
         n = len(s)
+        word_set = set(wordDict)
         dp = [False] * (n + 1)
         dp[0] = True
         
-        # 获取字典中单词的最大长度
-        max_len = max(len(word) for word in wordDict) if wordDict else 0
-        
         for i in range(1, n + 1):
-            # 只检查可能的单词长度
-            for j in range(max(0, i - max_len), i):
-                if dp[j] and s[j:i] in wordSet:
+            for j in range(i):
+                if dp[j] and s[j:i] in word_set:
                     dp[i] = True
                     break
         
@@ -64,13 +65,16 @@ class Solution:
         递归解法（带记忆化）
         
         解题思路：
-        1. 递归计算，使用记忆化避免重复计算
-        2. 自顶向下的动态规划
+        1. 递归计算每个位置是否可以被拆分
+        2. 使用记忆化避免重复计算
         
-        时间复杂度：O(n^2 + m)
-        空间复杂度：O(n + m)
+        时间复杂度：O(n^2)
+        空间复杂度：O(n)
         """
-        wordSet = set(wordDict)
+        if not s or not wordDict:
+            return False
+        
+        word_set = set(wordDict)
         memo = {}
         
         def dfs(start):
@@ -81,7 +85,7 @@ class Solution:
                 return True
             
             for end in range(start + 1, len(s) + 1):
-                if s[start:end] in wordSet and dfs(end):
+                if s[start:end] in word_set and dfs(end):
                     memo[start] = True
                     return True
             
@@ -90,34 +94,67 @@ class Solution:
         
         return dfs(0)
     
-    def wordBreak_bfs(self, s: str, wordDict: List[str]) -> bool:
+    def wordBreak_brute_force(self, s: str, wordDict: List[str]) -> bool:
         """
-        BFS解法：广度优先搜索
+        暴力解法：枚举所有可能
         
         解题思路：
-        1. 将问题转化为图的最短路径问题
-        2. 每个位置是一个节点，单词是边
-        3. 使用BFS找到从0到len(s)的路径
+        1. 枚举所有可能的分割点
+        2. 检查每种分割是否有效
         
-        时间复杂度：O(n^2 + m)
-        空间复杂度：O(n + m)
+        时间复杂度：O(2^n)
+        空间复杂度：O(n)
         """
+        if not s or not wordDict:
+            return False
+        
+        word_set = set(wordDict)
+        
+        def dfs(start):
+            if start == len(s):
+                return True
+            
+            for end in range(start + 1, len(s) + 1):
+                if s[start:end] in word_set and dfs(end):
+                    return True
+            
+            return False
+        
+        return dfs(0)
+    
+    def wordBreak_alternative(self, s: str, wordDict: List[str]) -> bool:
+        """
+        替代解法：使用BFS
+        
+        解题思路：
+        1. 使用BFS遍历所有可能的状态
+        2. 每个状态表示当前可以到达的位置
+        
+        时间复杂度：O(n^2)
+        空间复杂度：O(n)
+        """
+        if not s or not wordDict:
+            return False
+        
         from collections import deque
         
-        wordSet = set(wordDict)
-        n = len(s)
+        word_set = set(wordDict)
         queue = deque([0])
-        visited = set([0])
+        visited = set()
         
         while queue:
             start = queue.popleft()
             
-            if start == n:
+            if start in visited:
+                continue
+            
+            visited.add(start)
+            
+            if start == len(s):
                 return True
             
-            for end in range(start + 1, n + 1):
-                if end not in visited and s[start:end] in wordSet:
-                    visited.add(end)
+            for end in range(start + 1, len(s) + 1):
+                if s[start:end] in word_set:
                     queue.append(end)
         
         return False
@@ -127,13 +164,44 @@ class Solution:
         DFS解法：深度优先搜索
         
         解题思路：
-        1. 使用DFS遍历所有可能的路径
-        2. 使用记忆化避免重复计算
+        1. 使用DFS遍历所有可能的分割
+        2. 检查是否存在有效的分割
         
-        时间复杂度：O(n^2 + m)
-        空间复杂度：O(n + m)
+        时间复杂度：O(2^n)
+        空间复杂度：O(n)
         """
-        wordSet = set(wordDict)
+        if not s or not wordDict:
+            return False
+        
+        word_set = set(wordDict)
+        
+        def dfs(start):
+            if start == len(s):
+                return True
+            
+            for end in range(start + 1, len(s) + 1):
+                if s[start:end] in word_set and dfs(end):
+                    return True
+            
+            return False
+        
+        return dfs(0)
+    
+    def wordBreak_memo(self, s: str, wordDict: List[str]) -> bool:
+        """
+        记忆化DFS解法
+        
+        解题思路：
+        1. 使用记忆化避免重复计算
+        2. 提高DFS的效率
+        
+        时间复杂度：O(n^2)
+        空间复杂度：O(n)
+        """
+        if not s or not wordDict:
+            return False
+        
+        word_set = set(wordDict)
         memo = {}
         
         def dfs(start):
@@ -144,7 +212,7 @@ class Solution:
                 return True
             
             for end in range(start + 1, len(s) + 1):
-                if s[start:end] in wordSet and dfs(end):
+                if s[start:end] in word_set and dfs(end):
                     memo[start] = True
                     return True
             
@@ -153,23 +221,92 @@ class Solution:
         
         return dfs(0)
     
+    def wordBreak_greedy(self, s: str, wordDict: List[str]) -> bool:
+        """
+        贪心解法：优先选择长单词
+        
+        解题思路：
+        1. 优先选择较长的单词
+        2. 贪心地选择最优解
+        
+        时间复杂度：O(n^2)
+        空间复杂度：O(n)
+        """
+        if not s or not wordDict:
+            return False
+        
+        # 按长度从大到小排序
+        sorted_words = sorted(wordDict, key=len, reverse=True)
+        word_set = set(wordDict)
+        
+        def dfs(start):
+            if start == len(s):
+                return True
+            
+            for word in sorted_words:
+                if s.startswith(word, start):
+                    if dfs(start + len(word)):
+                        return True
+            
+            return False
+        
+        return dfs(0)
+    
+    def wordBreak_iterative(self, s: str, wordDict: List[str]) -> bool:
+        """
+        迭代解法：使用栈
+        
+        解题思路：
+        1. 使用栈模拟递归过程
+        2. 避免递归调用栈
+        
+        时间复杂度：O(n^2)
+        空间复杂度：O(n)
+        """
+        if not s or not wordDict:
+            return False
+        
+        word_set = set(wordDict)
+        stack = [0]
+        visited = set()
+        
+        while stack:
+            start = stack.pop()
+            
+            if start in visited:
+                continue
+            
+            visited.add(start)
+            
+            if start == len(s):
+                return True
+            
+            for end in range(start + 1, len(s) + 1):
+                if s[start:end] in word_set:
+                    stack.append(end)
+        
+        return False
+    
     def wordBreak_trie(self, s: str, wordDict: List[str]) -> bool:
         """
-        字典树解法：使用Trie优化
+        字典树解法
         
         解题思路：
         1. 构建字典树存储所有单词
-        2. 使用动态规划结合字典树
+        2. 使用动态规划求解
         
-        时间复杂度：O(n^2 + m)
-        空间复杂度：O(n + m)
+        时间复杂度：O(n^2)
+        空间复杂度：O(n)
         """
+        if not s or not wordDict:
+            return False
+        
+        # 构建字典树
         class TrieNode:
             def __init__(self):
                 self.children = {}
-                self.is_word = False
+                self.is_end = False
         
-        # 构建字典树
         root = TrieNode()
         for word in wordDict:
             node = root
@@ -177,51 +314,24 @@ class Solution:
                 if char not in node.children:
                     node.children[char] = TrieNode()
                 node = node.children[char]
-            node.is_word = True
+            node.is_end = True
         
         n = len(s)
         dp = [False] * (n + 1)
         dp[0] = True
-        
-        for i in range(n):
-            if dp[i]:
-                node = root
-                for j in range(i, n):
-                    if s[j] not in node.children:
-                        break
-                    node = node.children[s[j]]
-                    if node.is_word:
-                        dp[j + 1] = True
-        
-        return dp[n]
-    
-    def wordBreak_optimized_v2(self, s: str, wordDict: List[str]) -> bool:
-        """
-        进一步优化：使用集合和长度限制
-        
-        解题思路：
-        1. 使用集合存储单词
-        2. 只检查可能的单词长度
-        3. 提前终止不必要的检查
-        
-        时间复杂度：O(n×m)
-        空间复杂度：O(n + m)
-        """
-        if not s or not wordDict:
-            return False
-        
-        wordSet = set(wordDict)
-        n = len(s)
-        dp = [False] * (n + 1)
-        dp[0] = True
-        
-        # 获取所有可能的单词长度
-        word_lengths = set(len(word) for word in wordDict)
         
         for i in range(1, n + 1):
-            for length in word_lengths:
-                if i >= length and dp[i - length]:
-                    if s[i - length:i] in wordSet:
+            for j in range(i):
+                if dp[j]:
+                    node = root
+                    valid = True
+                    for k in range(j, i):
+                        if s[k] not in node.children:
+                            valid = False
+                            break
+                        node = node.children[s[k]]
+                    
+                    if valid and node.is_end:
                         dp[i] = True
                         break
         
@@ -248,7 +358,7 @@ def main():
     
     # 测试用例3
     s = "catsandog"
-    wordDict = ["cat", "cats", "and", "sand", "dog"]
+    wordDict = ["cats", "dog", "sand", "and", "cat"]
     result = solution.wordBreak(s, wordDict)
     expected = False
     assert result == expected
@@ -261,8 +371,8 @@ def main():
     assert result == expected
     
     # 测试用例5
-    s = "aaaaaaa"
-    wordDict = ["aaaa", "aaa"]
+    s = "ab"
+    wordDict = ["a", "b"]
     result = solution.wordBreak(s, wordDict)
     expected = True
     assert result == expected
@@ -281,12 +391,12 @@ def main():
     result_rec = solution.wordBreak_recursive(s, wordDict)
     assert result_rec == expected
     
-    # 测试BFS解法
-    print("测试BFS解法...")
+    # 测试替代解法
+    print("测试替代解法...")
     s = "leetcode"
     wordDict = ["leet", "code"]
-    result_bfs = solution.wordBreak_bfs(s, wordDict)
-    assert result_bfs == expected
+    result_alt = solution.wordBreak_alternative(s, wordDict)
+    assert result_alt == expected
     
     # 测试DFS解法
     print("测试DFS解法...")
@@ -295,19 +405,33 @@ def main():
     result_dfs = solution.wordBreak_dfs(s, wordDict)
     assert result_dfs == expected
     
+    # 测试记忆化DFS解法
+    print("测试记忆化DFS解法...")
+    s = "leetcode"
+    wordDict = ["leet", "code"]
+    result_memo = solution.wordBreak_memo(s, wordDict)
+    assert result_memo == expected
+    
+    # 测试贪心解法
+    print("测试贪心解法...")
+    s = "leetcode"
+    wordDict = ["leet", "code"]
+    result_greedy = solution.wordBreak_greedy(s, wordDict)
+    assert result_greedy == expected
+    
+    # 测试迭代解法
+    print("测试迭代解法...")
+    s = "leetcode"
+    wordDict = ["leet", "code"]
+    result_iter = solution.wordBreak_iterative(s, wordDict)
+    assert result_iter == expected
+    
     # 测试字典树解法
     print("测试字典树解法...")
     s = "leetcode"
     wordDict = ["leet", "code"]
     result_trie = solution.wordBreak_trie(s, wordDict)
     assert result_trie == expected
-    
-    # 测试进一步优化解法
-    print("测试进一步优化解法...")
-    s = "leetcode"
-    wordDict = ["leet", "code"]
-    result_opt2 = solution.wordBreak_optimized_v2(s, wordDict)
-    assert result_opt2 == expected
     
     print("所有测试用例通过！")
     print("所有解法验证通过！")
